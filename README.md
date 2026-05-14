@@ -22,6 +22,26 @@ then reads the normal session transcript to produce text or JSON output.
   either side.
 - Work on macOS, Linux, and Windows where the upstream executable is available.
 
+## Requirements
+
+Runtime requirements:
+
+- The upstream interactive CLI must be installed and resolvable from `PATH`.
+- The upstream CLI must already be authenticated/configured for unattended use.
+- The host OS must support pseudo-terminals. The published builds target macOS,
+  Linux, and Windows.
+- Hook execution must be available in the upstream CLI. `praude` injects
+  temporary hooks to observe turn start/stop events.
+- On Windows, PowerShell must be available for the wrapper's internal hook
+  commands. Current supported Windows runners include it by default.
+- If the current directory is inside a Git worktree, `git` is used to discover
+  the project root for trust pre-acceptance. Without `git`, `praude` falls back
+  to the current directory.
+
+Build-from-source requirements:
+
+- Rust stable toolchain with Cargo.
+
 ## Install
 
 ```sh
